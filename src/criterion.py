@@ -45,7 +45,7 @@ class Entropy(Criterion):
         '''
         counts = utils.label_counts(rows)
         total = rows.shape[0]
-        entropy = 1
+        entropy = 0
         for count in counts.values:
             entropy -= (count/total)*math.log((count/total), 2)
         return entropy
