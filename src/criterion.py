@@ -1,4 +1,5 @@
 import utils
+import math
 
 class Criterion:
     """You should not be calling this class diretly.
@@ -33,6 +34,21 @@ class Gini(Criterion):
         for count in counts.values:
             gini_im -= (count/total)**2
         return gini_im
+    
+class Entropy(Criterion):
+    def __init__(self):
+        pass
+    
+    def impurity(self, rows):
+        '''Calculates the entropy corresponding to
+        the rows provided.
+        '''
+        counts = utils.label_counts(rows)
+        total = rows.shape[0]
+        entropy = 1
+        for count in counts.values:
+            entropy -= (count/total)*math.log((count/total), 2)
+        return entropy
 
 class STD(Criterion):
     def __init__(self):
